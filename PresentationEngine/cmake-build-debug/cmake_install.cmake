@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/mski/CLionProjects/ChartCore/ChartEngine
+# Install script for directory: C:/Users/mski/CLionProjects/ChartCore/PresentationEngine
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
