@@ -4,6 +4,10 @@
 
 #include "LinedChartFactory.hpp"
 
-Chart LinedChartFactory::createChart() {
-    return new LinedChart();
+LinedChartFactory::~LinedChartFactory() {
+    std::cout << "Lined chart factory deleted..." << std::endl;
+}
+
+Chart * LinedChartFactory::createChart() {
+     return new LinedChart();
 }

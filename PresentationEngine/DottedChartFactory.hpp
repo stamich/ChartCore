@@ -2,18 +2,20 @@
 // Created by michal on 01.03.2020.
 //
 
-#ifndef CHARTCORE_CHARTFACTORY_HPP
-#define CHARTCORE_CHARTFACTORY_HPP
+#ifndef TEMPORAL_DOTTEDCHARTFACTORY_HPP
+#define TEMPORAL_DOTTEDCHARTFACTORY_HPP
 
-#include "AbstractPresentationFactory.hpp"
+#include <iostream>
 #include "DottedChart.hpp"
-#include "Chart.hpp"
+#include "AbstractPresentationFactory.hpp"
 
-class DottedChartFactory : public AbstractPresentationFactory {
+
+class DottedChartFactory : public AbstractPresentationFactory{
 public:
-    ~DottedChartFactory() {}
+    ~DottedChartFactory();
 
-    Chart *createChart();
+    Chart* createChart();
 };
 
-#endif //CHARTCORE_CHARTFACTORY_HPP
+
+#endif //TEMPORAL_DOTTEDCHARTFACTORY_HPP

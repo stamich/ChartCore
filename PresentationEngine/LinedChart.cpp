@@ -4,6 +4,10 @@
 
 #include "LinedChart.hpp"
 
+LinedChart::~LinedChart() {
+    std::cout << "Lined chart deleted..." << std::endl;
+}
+
 const char * LinedChart::getName() {
-    return "Lined chart...";
+    return "Lined chart produced...";
 }

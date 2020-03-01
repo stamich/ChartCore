@@ -2,17 +2,20 @@
 // Created by michal on 01.03.2020.
 //
 
-#ifndef CHARTCORE_LINEDCHARTFACTORY_HPP
-#define CHARTCORE_LINEDCHARTFACTORY_HPP
+#ifndef TEMPORAL_LINEDCHARTFACTORY_HPP
+#define TEMPORAL_LINEDCHARTFACTORY_HPP
 
-#include "AbstractPresentationFactory.hpp"
+#include <iostream>
 #include "LinedChart.hpp"
+#include "AbstractPresentationFactory.hpp"
 
 class LinedChartFactory : public AbstractPresentationFactory {
 public:
-    ~LinedChartFactory() {}
+    ~LinedChartFactory();
 
     Chart* createChart();
 };
 
-#endif //CHARTCORE_LINEDCHARTFACTORY_HPP
+
+
+#endif //TEMPORAL_LINEDCHARTFACTORY_HPP

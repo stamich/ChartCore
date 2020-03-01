@@ -2,17 +2,17 @@
 // Created by michal on 01.03.2020.
 //
 
-#ifndef CHARTCORE_LINEDCHART_HPP
-#define CHARTCORE_LINEDCHART_HPP
+#ifndef TEMPORAL_LINEDCHART_HPP
+#define TEMPORAL_LINEDCHART_HPP
 
 #include "Chart.hpp"
+#include <iostream>
 
 class LinedChart : public Chart {
 public:
-    ~LinedChart() {}
+    ~LinedChart();
 
     const char* getName();
 };
 
-
-#endif //CHARTCORE_LINEDCHART_HPP
+#endif //TEMPORAL_LINEDCHART_HPP

@@ -40,4 +40,4 @@ file(GLOB DataEngine "*.hpp" "*.cpp")
 
 add_executable(ChartCore main.cpp PresentationEngine DataEngine)
 
-target_link_libraries(ChartCore ${GLEW_LIBRARIES} ${GLFW_LIBRARIES} ${GLM_LIBRARIES} Vulkan::Vulkan)
+target_link_libraries(ChartCore ${GLEW_LIBRARIES} ${GLFW_LIBRARY} glfw ${GLM_LIBRARIES} Vulkan::Vulkan)

@@ -2,17 +2,18 @@
 // Created by michal on 01.03.2020.
 //
 
-#ifndef CHARTCORE_DOTTEDCHART_HPP
-#define CHARTCORE_DOTTEDCHART_HPP
+#ifndef TEMPORAL_DOTTEDCHART_HPP
+#define TEMPORAL_DOTTEDCHART_HPP
 
+#include <iostream>
 #include "Chart.hpp"
 
 class DottedChart : public Chart {
 public:
-    ~DottedChart() {}
+    ~DottedChart();
 
     const char* getName();
 };
 
 
-#endif //CHARTCORE_DOTTEDCHART_HPP
+#endif //TEMPORAL_DOTTEDCHART_HPP

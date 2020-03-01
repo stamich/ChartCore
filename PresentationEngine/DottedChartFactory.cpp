@@ -4,6 +4,10 @@
 
 #include "DottedChartFactory.hpp"
 
-Chart DottedChartFactory::createChart() {
-    return new DottedLineChart();
+DottedChartFactory::~DottedChartFactory() {
+    std::cout << "Dotted chart factory deleted..." << std::endl;
+}
+
+Chart * DottedChartFactory::createChart() {
+    return new DottedChart();
 }
