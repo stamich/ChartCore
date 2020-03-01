@@ -5,5 +5,5 @@
 #include "DottedChartFactory.hpp"
 
 Chart DottedChartFactory::createChart() {
-    return new DottedChart();
+    return new DottedLineChart();
 }

@@ -3,6 +3,8 @@
 //
 #include <iostream>
 #include <cstdlib>
+#include <catch2/catch.hpp>
+
 #include "PresentationEngine/Chart.hpp"
 #include "PresentationEngine/DottedChartFactory.hpp"
 #include "PresentationEngine/LinedChartFactory.hpp"

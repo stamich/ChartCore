@@ -36,7 +36,8 @@ include_directories(${GLM_INCLUDE_DIRS})
 #endforeach()
 
 file(GLOB PresentationEngine "*.hpp" "*.cpp")
+file(GLOB DataEngine "*.hpp" "*.cpp")
 
-add_executable(ChartCore main.cpp PresentationEngine)
+add_executable(ChartCore main.cpp PresentationEngine DataEngine)
 
 target_link_libraries(ChartCore ${GLEW_LIBRARIES} ${GLFW_LIBRARIES} ${GLM_LIBRARIES} Vulkan::Vulkan)
