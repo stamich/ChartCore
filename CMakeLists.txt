@@ -35,9 +35,19 @@ include_directories(${GLM_INCLUDE_DIRS})
 #    endforeach()
 #endforeach()
 
-file(GLOB PresentationEngine "*.hpp" "*.cpp")
-file(GLOB DataEngine "*.hpp" "*.cpp")
+#file(GLOB PresentationEngine "*.hpp" "*.cpp")
+#file(GLOB DataEngine "*.hpp" "*.cpp")
 
-add_executable(ChartCore main.cpp PresentationEngine DataEngine)
+add_executable(ChartCore main.cpp
+        PresentationEngine/AbstractPresentationFactory.hpp
+        PresentationEngine/Chart.hpp
+        PresentationEngine/DottedChart.hpp
+        PresentationEngine/DottedChart.cpp
+        PresentationEngine/DottedChartFactory.hpp
+        PresentationEngine/DottedChartFactory.cpp
+        PresentationEngine/LinedChart.hpp
+        PresentationEngine/LinedChart.cpp
+        PresentationEngine/LinedChartFactory.hpp
+        PresentationEngine/LinedChartFactory.cpp)
 
 target_link_libraries(ChartCore ${GLEW_LIBRARIES} ${GLFW_LIBRARY} glfw ${GLM_LIBRARIES} Vulkan::Vulkan)
