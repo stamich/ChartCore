@@ -1,3 +1,0 @@
-C:/Users/mski/CLionProjects/ChartCore/ChartEngine/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/mski/CLionProjects/ChartCore/ChartEngine/cmake-build-debug/CMakeFiles/ChartCore.dir
-C:/Users/mski/CLionProjects/ChartCore/ChartEngine/cmake-build-debug/CMakeFiles/rebuild_cache.dir

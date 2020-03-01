@@ -1,129 +1,42 @@
 cmake_minimum_required(VERSION 3.15)
-
-project(ChartCore VERSION 1.0)
+project(ChartCore)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CHARTS DataEngine PresentationEngine)
 
-set_property( GLOBAL PROPERTY USE_FOLDERS ON )
+find_package(Vulkan REQUIRED)
+include_directories("$ENV{VULKAN_SDK}/include")
 
-if( CMAKE_BUILD_TYPE STREQUAL "" )
-    set( CMAKE_BUILD_TYPE "debug" )
-endif()
+find_package(GLEW REQUIRED)
+include_directories(${GLEW_INCLUDE_DIRS})
 
-if( NOT USE_PLATFORM MATCHES "VK_USE_PLATFORM_.*" )
-    if( WIN32 )
-        set( USE_PLATFORM "VK_USE_PLATFORM_WIN32_KHR" )
-    elseif( UNIX )
-        set( USE_PLATFORM "VK_USE_PLATFORM_XCB_KHR" )
-    endif()
-endif()
+find_package(glfw3 3.3 REQUIRED)
+include_directories(${GLFW_INCLUDE_DIRS})
 
-if( USE_PLATFORM STREQUAL "VK_USE_PLATFORM_WIN32_KHR" )
-    set( CMAKE_C_FLAGS_RELWITHDEBINFO    "${CMAKE_C_FLAGS_RELWITHDEBINFO} /MT" )
-    set( CMAKE_C_FLAGS_RELEASE           "${CMAKE_C_FLAGS_RELEASE} /MT" )
-    set( CMAKE_C_FLAGS_DEBUG             "${CMAKE_C_FLAGS_DEBUG} /MTd" )
-    set( CMAKE_CXX_FLAGS_RELWITHDEBINFO  "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} /MT" )
-    set( CMAKE_CXX_FLAGS_RELEASE         "${CMAKE_CXX_FLAGS_RELEASE} /MT" )
-    set( CMAKE_CXX_FLAGS_DEBUG           "${CMAKE_CXX_FLAGS_DEBUG} /MTd" )
-    set( PLATFORM_LIBRARY                "" )
-    add_definitions( -DNOMINMAX )
-elseif( USE_PLATFORM STREQUAL "VK_USE_PLATFORM_XCB_KHR" )
-    add_definitions( -std=c++11 )
-    set( PLATFORM_LIBRARY dl xcb )
-elseif( USE_PLATFORM STREQUAL "VK_USE_PLATFORM_XLIB_KHR" )
-    add_definitions( -std=c++11 )
-    set( PLATFORM_LIBRARY dl X11 )
-endif()
+find_package(glm REQUIRED)
+include_directories(${GLM_INCLUDE_DIRS})
 
-if( CMAKE_BUILD_TYPE STREQUAL "debug" )
-    add_definitions(-D_DEBUG)
-endif()
-
-macro( add_executable _type _number _name )
-    set( TARGET_NAME "${_number}-${_name}" )
-    file( GLOB PROJECT_FILES "${CMAKE_CURRENT_LIST_DIR}/${_type}/${_number}/*.*" )
-    _add_executable( ${TARGET_NAME} ${ARGN} ${PROJECT_FILES} )
-    target_compile_definitions( ${TARGET_NAME} PRIVATE USE_SWAPCHAIN_EXTENSIONS )
-    target_link_libraries( ${TARGET_NAME} ${PLATFORM_LIBRARY} )
-    set_property( TARGET ${TARGET_NAME} PROPERTY FOLDER "${_type}" )
-
-    if( EXISTS "${CMAKE_SOURCE_DIR}/${_type}/${_number}/Data" )
-        file( GLOB DATA_FILES "${CMAKE_SOURCE_DIR}/${_type}/${_number}/Data/*.*" )
-        file( COPY ${DATA_FILES} DESTINATION "${CMAKE_SOURCE_DIR}/build/Data/${_type}/${_number}/" )
-    endif()
-endmacro()
-
-add_definitions( -DVK_NO_PROTOTYPES )
-add_definitions( -D${USE_PLATFORM} )
-include_directories( "External" )
-include_directories( "Common" )
-
-file( GLOB BASIC_SHARED_HEADER_FILES
-        "Common/OperatingSystem.hpp"
-        "PresentationEngine/Common/ListOfFunctions.h"
-        "PresentationEngine/Common/VulkanCommon.hpp"
-        "PresentationEngine/Common/VulkanFunctions.hpp"
-        "PresentationEngine/Common/VulkanTools.hpp")
-
-file( GLOB BASIC_SHARED_SOURCE_FILES
-        "Common/OperatingSystem.cpp"
-        "Common/VulkanFunctions.cpp" )
-
-#file( GLOB EXTERNAL_HEADER_FILES
-#        "External/vk_platform.h"
-#        "External/vulkan.h"
-#        "External/stb_image.h" )
-
-set( ALL_BASIC_SHARED_FILES
-        ${BASIC_SHARED_HEADER_FILES}
-        ${BASIC_SHARED_SOURCE_FILES}
-        ${EXTERNAL_HEADER_FILES} )
-
-file( GLOB ADVANCED_SHARED_HEADER_FILES
-        "Common/Tools.h"
-        "Common/VulkanCommon.h" )
-
-file( GLOB ADVANCED_SHARED_SOURCE_FILES
-        "Common/Tools.cpp"
-        "Common/VulkanCommon.cpp" )
-
-set( ALL_BASIC_AND_ADVANCED_SHARED_FILES
-        ${ALL_BASIC_SHARED_FILES}
-        ${ADVANCED_SHARED_HEADER_FILES}
-        ${ADVANCED_SHARED_SOURCE_FILES} )
-
-set( PROJECT_HEADER_FILES REGULAR_EXPRESSION
-        "(Tutorial|Benchmark)[0-9]+[.]h" )
-
-set( PROJECT_SOURCE_FILES REGULAR_EXPRESSION
-        "(Tutorial|Benchmark)[0-9]+[.]cpp" )
-
-source_group( "Header Files\\Common" FILES ${BASIC_SHARED_HEADER_FILES} ${ADVANCED_SHARED_HEADER_FILES} )
-source_group( "Source Files\\Common" FILES ${BASIC_SHARED_SOURCE_FILES} ${ADVANCED_SHARED_SOURCE_FILES} )
-source_group( "Header Files\\External" FILES ${EXTERNAL_HEADER_FILES} )
-source_group( "Header Files" FILES ${PROJECT_HEADER_FILES} )
-source_group( "Source Files" FILES ${PROJECT_SOURCE_FILES} )
-
-#_add_executable( "01-The_Beginning" ${ALL_BASIC_SHARED_FILES}
-#        Tutorials/01/Tutorial01.h
-#        Tutorials/01/main.cpp
-#        Tutorials/01/Tutorial01.cpp )
-#target_link_libraries( "01-The_Beginning" ${PLATFORM_LIBRARY} )
-#set_property( TARGET "01-The_Beginning" PROPERTY FOLDER "Tutorials" )
+#foreach(_dir IN ITEMS ${PATTERNS})
+#    file(GLOB _files "${_dir}/*.cpp")
+#    message(STATUS "Pattern `${_dir}':")
 #
-#add_executable( "Tutorials" "02" "Swapchain" ${ALL_BASIC_SHARED_FILES} )
+#    foreach(_file IN ITEMS ${_files})
 #
-#add_executable( "Tutorials" "03" "First_Triangle" ${ALL_BASIC_AND_ADVANCED_SHARED_FILES} )
+#        get_filename_component(_file_name
+#                ${_file} NAME
+#                )
 #
-#add_executable( "Tutorials" "04" "Vertex_Attributes" ${ALL_BASIC_AND_ADVANCED_SHARED_FILES} )
+#        set(_project_name "${_file_name}")
+#        message(STATUS "  ${_dir}/${_file_name} is going to be built")
 #
-#add_executable( "Tutorials" "05" "Staging_Resources" ${ALL_BASIC_AND_ADVANCED_SHARED_FILES} )
+#        add_executable(${_project_name} "${_dir}/${_file_name}")
 #
-#add_executable( "Tutorials" "06" "Descriptor_Sets" ${ALL_BASIC_AND_ADVANCED_SHARED_FILES} )
-#
-#add_executable( "Tutorials" "07" "Uniform_Buffers" ${ALL_BASIC_AND_ADVANCED_SHARED_FILES} )
+#        target_link_libraries(ChartCore ${GLEW_LIBRARIES} ${GLFW_LIBRARIES} ${GLM_LIBRARIES} Vulkan::Vulkan)
+#    endforeach()
+#endforeach()
 
-add_executable(ChartCore main.cpp)
+file(GLOB PresentationEngine "*.hpp" "*.cpp")
 
-enable_testing()
+add_executable(ChartCore main.cpp PresentationEngine)
+
+target_link_libraries(ChartCore ${GLEW_LIBRARIES} ${GLFW_LIBRARIES} ${GLM_LIBRARIES} Vulkan::Vulkan)
