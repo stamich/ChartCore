@@ -41,10 +41,14 @@ include_directories(${GLM_INCLUDE_DIRS})
 add_executable(ChartCore main.cpp
         PresentationEngine/AbstractPresentationFactory.hpp
         PresentationEngine/Chart.hpp
-        PresentationEngine/DottedChart.hpp
-        PresentationEngine/DottedChart.cpp
-        PresentationEngine/DottedChartFactory.hpp
-        PresentationEngine/DottedChartFactory.cpp
+        PresentationEngine/ColumnChart.hpp
+        PresentationEngine/ColumnChart.cpp
+        PresentationEngine/ColumnChartFactory.hpp
+        PresentationEngine/ColumnChartFactory.cpp
+        PresentationEngine/ScatterChart.hpp
+        PresentationEngine/ScatterChart.cpp
+        PresentationEngine/ScatterChartFactory.hpp
+        PresentationEngine/ScatterChartFactory.cpp
         PresentationEngine/LinedChart.hpp
         PresentationEngine/LinedChart.cpp
         PresentationEngine/LinedChartFactory.hpp
