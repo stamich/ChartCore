@@ -6,9 +6,9 @@
 #define TEMPORAL_SCATTERCHART_HPP
 
 #include <iostream>
-#include "Chart.hpp"
+#include "AbstractChart.hpp"
 
-class ScatterChart : public Chart {
+class ScatterChart : public AbstractChart {
 public:
     ~ScatterChart();
 

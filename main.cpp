@@ -5,11 +5,12 @@
 //#include <cstdlib>
 //#include <catch2/catch.hpp>
 #include <iostream>
-#include "PresentationEngine/Chart.hpp"
+#include "PresentationEngine/ChartType/AbstractChart.hpp"
 
-#include "PresentationEngine/LinedChartFactory.hpp"
-#include "PresentationEngine/ScatterChartFactory.hpp"
-#include "PresentationEngine/ColumnChartFactory.hpp"
+#include "PresentationEngine/ChartType/AreaChartFactory.hpp"
+#include "PresentationEngine/ChartType/ColumnChartFactory.hpp"
+#include "PresentationEngine/ChartType/LineChartFactory.hpp"
+#include "PresentationEngine/ChartType/ScatterChartFactory.hpp"
 
 // Types to produce
 
@@ -17,26 +18,37 @@
 
 int main() {
 
-    ColumnChartFactory* factory0 = new ColumnChartFactory();
-    ScatterChartFactory* factory1 = new ScatterChartFactory();
-    LinedChartFactory* factory2 = new LinedChartFactory();
+    AreaChartFactory* factory0 = new AreaChartFactory();
 
-    Chart* c0 = factory0->createChart();
-    std::cout << "Chart: " << c0->getName() << std::endl;
+    ColumnChartFactory* factory1 = new ColumnChartFactory();
 
-    Chart* c1 = factory1->createChart();
-    std::cout << "Chart: " << c1->getName() << std::endl;
+    LineChartFactory* factory2 = new LineChartFactory();
 
-    Chart* c2 = factory2->createChart();
-    std::cout << "Chart: " << c2->getName() << "\n" << std::endl;
+    ScatterChartFactory* factory3 = new ScatterChartFactory();
+
+    AbstractChart* c0 = factory0->createChart();
+    std::cout << "AbstractChart: " << c0->getName() << std::endl;
+
+    AbstractChart* c1 = factory1->createChart();
+    std::cout << "AbstractChart: " << c1->getName() << std::endl;
+
+    AbstractChart* c2 = factory2->createChart();
+    std::cout << "AbstractChart: " << c2->getName() << std::endl;
+
+    AbstractChart* c3 = factory3->createChart();
+    std::cout << "AbstractChart: " << c3->getName() << "\n" << std::endl;
 
     delete factory0;
     delete factory1;
     delete factory2;
+    delete factory3;
+
+    std::cout << "" << std::endl;
 
     delete c0;
     delete c1;
     delete c2;
+    delete c3;
 
     return 0;
 }

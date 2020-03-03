@@ -8,6 +8,6 @@ ColumnChartFactory::~ColumnChartFactory() {
     std::cout << "Column chart factory deleted..." << std::endl;
 }
 
-Chart* ColumnChartFactory::createChart() {
+AbstractChart* ColumnChartFactory::createChart() {
     return new ColumnChart();
 }

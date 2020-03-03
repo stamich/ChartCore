@@ -5,13 +5,13 @@
 #ifndef CHARTCORE_ABSTRACTPRESENTATIONFACTORY_HPP
 #define CHARTCORE_ABSTRACTPRESENTATIONFACTORY_HPP
 
-#include "Chart.hpp"
+#include "AbstractChart.hpp"
 
 class AbstractPresentationFactory {
 public:
     virtual ~AbstractPresentationFactory() {}
 
-    virtual Chart* createChart() = 0;
+    virtual AbstractChart* createChart() = 0;
 };
 
 #endif //CHARTCORE_ABSTRACTPRESENTATIONFACTORY_HPP

@@ -8,6 +8,6 @@ ScatterChartFactory::~ScatterChartFactory() {
     std::cout << "Scatter chart factory deleted..." << std::endl;
 }
 
-Chart * ScatterChartFactory::createChart() {
+AbstractChart * ScatterChartFactory::createChart() {
     return new ScatterChart();
 }

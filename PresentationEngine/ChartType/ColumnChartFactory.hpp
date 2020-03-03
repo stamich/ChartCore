@@ -13,7 +13,7 @@ class ColumnChartFactory : public AbstractPresentationFactory {
 public:
     ~ColumnChartFactory();
 
-    Chart* createChart();
+    AbstractChart* createChart();
 };
 
 

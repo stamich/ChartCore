@@ -39,19 +39,29 @@ include_directories(${GLM_INCLUDE_DIRS})
 #file(GLOB DataEngine "*.hpp" "*.cpp")
 
 add_executable(ChartCore main.cpp
-        PresentationEngine/AbstractPresentationFactory.hpp
-        PresentationEngine/Chart.hpp
-        PresentationEngine/ColumnChart.hpp
-        PresentationEngine/ColumnChart.cpp
-        PresentationEngine/ColumnChartFactory.hpp
-        PresentationEngine/ColumnChartFactory.cpp
-        PresentationEngine/ScatterChart.hpp
-        PresentationEngine/ScatterChart.cpp
-        PresentationEngine/ScatterChartFactory.hpp
-        PresentationEngine/ScatterChartFactory.cpp
-        PresentationEngine/LinedChart.hpp
-        PresentationEngine/LinedChart.cpp
-        PresentationEngine/LinedChartFactory.hpp
-        PresentationEngine/LinedChartFactory.cpp)
+        PresentationEngine/Renderer/BUILD_OPTIONS.h
+        PresentationEngine/Renderer/OperatingSystem.hpp
+        PresentationEngine/Renderer/OperatingSystem.cpp
+        PresentationEngine/Renderer/VulkanRenderer.hpp
+        PresentationEngine/Renderer/VulkanRenderer.cpp
+
+        PresentationEngine/ChartType/AbstractPresentationFactory.hpp
+        PresentationEngine/ChartType/AbstractChart.hpp
+        PresentationEngine/ChartType/AreaChart.hpp
+        PresentationEngine/ChartType/AreaChart.cpp
+        PresentationEngine/ChartType/AreaChartFactory.hpp
+        PresentationEngine/ChartType/AreaChartFactory.cpp
+        PresentationEngine/ChartType/ColumnChart.hpp
+        PresentationEngine/ChartType/ColumnChart.cpp
+        PresentationEngine/ChartType/ColumnChartFactory.hpp
+        PresentationEngine/ChartType/ColumnChartFactory.cpp
+        PresentationEngine/ChartType/ScatterChart.hpp
+        PresentationEngine/ChartType/ScatterChart.cpp
+        PresentationEngine/ChartType/ScatterChartFactory.hpp
+        PresentationEngine/ChartType/ScatterChartFactory.cpp
+        PresentationEngine/ChartType/LineChart.hpp
+        PresentationEngine/ChartType/LineChart.cpp
+        PresentationEngine/ChartType/LineChartFactory.hpp
+        PresentationEngine/ChartType/LineChartFactory.cpp)
 
 target_link_libraries(ChartCore ${GLEW_LIBRARIES} ${GLFW_LIBRARY} glfw ${GLM_LIBRARIES} Vulkan::Vulkan)

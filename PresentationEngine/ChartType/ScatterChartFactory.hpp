@@ -14,7 +14,7 @@ class ScatterChartFactory : public AbstractPresentationFactory{
 public:
     ~ScatterChartFactory();
 
-    Chart* createChart();
+    AbstractChart* createChart();
 };
 
 

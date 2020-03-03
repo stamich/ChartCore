@@ -6,9 +6,9 @@
 #define CHARTCORE_COLUMNCHART_HPP
 
 #include <iostream>
-#include "Chart.hpp"
+#include "AbstractChart.hpp"
 
-class ColumnChart : public Chart {
+class ColumnChart : public AbstractChart {
 public:
     ~ColumnChart();
 
